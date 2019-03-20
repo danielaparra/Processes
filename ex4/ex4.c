@@ -14,7 +14,9 @@ int main(void)
     int pid = fork();
 
     if (pid == 0) {
-        execlp("ls", "ls", NULL);
+
+        char *args[] = {"ls", 0};
+        execve("/bin/ls", args, NULL);
         perror("exec");
         // Doesn't print this goodbye because of exec.
         printf("goodbye\n");
