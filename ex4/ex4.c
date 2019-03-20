@@ -10,7 +10,19 @@
 
 int main(void)
 {
-    // Your code here    
+    printf("hello\n");
+    int pid = fork();
+
+    if (pid == 0) {
+        execlp("ls", "ls", NULL);
+        perror("exec");
+        // Doesn't print this goodbye because of exec.
+        printf("goodbye\n");
+        exit(1);
+    } else {
+        wait(NULL);
+        printf("goodbye\n");
+    }   
 
     return 0;
 }
