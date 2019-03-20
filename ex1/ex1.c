@@ -8,7 +8,21 @@
 
 int main(void)
 {
-    // Your code here
+    int x = 100;
+
+    pid_t pid = fork();
+
+    // Child process
+    if (pid == 0) {
+        printf("%d\n", x);
+        x = 50;
+        printf("%d\n", x);
+    // Parent process
+    } else {
+        printf("%d\n", x);
+        x = 200;
+        printf("%d\n", x);
+    }
 
     return 0;
 }
