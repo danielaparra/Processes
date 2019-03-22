@@ -8,7 +8,31 @@
 
 int main(void)
 {
-    // Your code here 
-    
+    FILE *fp= fopen("text.txt", "r+");
+
+    char text[128];
+
+    while(fgets(text, 128, fp) != NULL) {
+        printf("%s", text);
+    }
+
+    pid_t pid = fork();
+
+    if (pid == 0) {
+        fprintf(fp, "Child has accessed file.\n");
+
+        // while(fgets(text, 128, fp) != NULL) {
+        //     printf("%s", text);
+        // }
+    } else {
+        fprintf(fp, "Parent has accessed file.\n");
+        
+        // while(fgets(text, 128, fp) != NULL) {
+        //     printf("%s", text);
+        // }
+    }
+
+    fclose(fp);
+
     return 0;
 }
